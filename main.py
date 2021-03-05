@@ -3,20 +3,31 @@ from discord.ext import commands, menus
 
 bot = commands.Bot(command_prefix="YOUR_PREFIX")
 
+# Creating custom error! :)
+class LolException(Exception):
+    pass
 
+# load json file!
 def loading():
     global balance
     with open("data.json","r") as fr:
         balance = json.loads(fr.read())
+        
+# saving in an python var!        
 loading()
 balance = balance
+
+# saver for json file
 def save():
     with open("data.json","w") as fw:
         fw.write(json.dumps(balance))
+        
+# Account creating function!
 def create_account(name:str):
     balance[name] = 0
     save()
 
+# Main Part
 class Economy(commands.Cog):
     '''Economy Commands and it is halal! :)'''
     @commands.command(aliases=['bal','balance'])
